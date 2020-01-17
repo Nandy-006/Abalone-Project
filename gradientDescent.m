@@ -9,7 +9,7 @@ function [Theta, J] = gradientDescent(X, y, Theta0, alpha, lambda, niter)
     m = size(X, 1);
     
     for i = 1:niter
-        J(i+1) = (1/(2*m))*((X*Theta - y)'*(X*Theta-y) + lambda*sum(Theta.*Theta));
+        J(i+1) = (1/(2*m))*((X*Theta - y)'*(X*Theta-y) + lambda*sum(Theta(2:end).*Theta(2:end)));
         tempTheta = Theta - (alpha/m)*(X'*(X*Theta - y));
         tempTheta(2:end) = tempTheta(2:end) + (lambda/m)*Theta(2:end);
         Theta = tempTheta;
